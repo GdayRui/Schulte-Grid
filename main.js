@@ -24,23 +24,37 @@ const setDiffRandomNumToEachCell = () => {
 };
 setDiffRandomNumToEachCell();
 
-// press each grid
-let n = 1;
+// press each grid cell in numerical order
+// 1st press, check if it's 1,
+// 2nd press, check if it's 1+1,
+// ...
+// if TRUE,  ,cell changes to gray
+// if FALSE,  ,cell changes back to lightblue
+// let n = 1;
 const clickCell = (elem) => {
-  // press in numerical order
-  // 1st press, check if it's 1,
-  // 2nd press, check if it's 1+1,
-  // ...
-  // if TRUE,  ,cell changes to green
-  // if FALSE,  ,cell changes to red
-
   let cellNum = parseInt(elem.innerText);
 
-  if (cellNum === n) {
-    n++;
+  if (cellNum === index(false, false)) {
+    //n++;
+    index(true, false);
+
     elem.style.backgroundColor = "lightgray";
   }
   if (cellNum === 4) {
     document.getElementById("result").innerHTML = "DONE";
   }
 };
+
+// set the index in block (closure function)
+let index = (() => {
+  let i = 1;
+  return (isIncrease, isReset) => {
+    if (isIncrease) {
+      return i++;
+    }
+    if (isReset) {
+      i = 1;
+    }
+    return i;
+  };
+})();
