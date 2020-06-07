@@ -1,10 +1,7 @@
-// 2 * 2 grid
-const numArr = [1, 2, 3, 4];
-
 // get a random number
-const getRandomNum = () => {
-  const indexOfNumArr = Math.floor(Math.random() * 4);
-  return numArr[indexOfNumArr];
+const getRandomNum = (gridNum) => {
+  const indexOfNumArr = Math.floor(Math.random() * gridNum);
+  return indexOfNumArr + 1;
 };
 
 // put the different random numbers into each grid cell
@@ -12,10 +9,10 @@ const setDiffRandomNumToEachCell = () => {
   let elements = document.getElementsByClassName("grid-item");
   let randomNumArr = [];
   for (let i = 0; i < 4; i++) {
-    let randomNum = getRandomNum();
+    let randomNum = getRandomNum(4);
     // if randomNum is in randomNumArr, reget randomNum until it is not in randomNumArr.
     while (randomNumArr.includes(randomNum)) {
-      randomNum = getRandomNum();
+      randomNum = getRandomNum(4);
     }
     randomNumArr.push(randomNum);
 
