@@ -1,0 +1,88 @@
+body {
+  width: 80%;
+  padding: 30px;
+  margin: auto;
+  background-color: #333;
+}
+
+/* header */
+h1 {
+  color: lightblue;
+  text-align: center;
+  margin: 30px auto;
+  text-shadow: 0px 2px 5px rgb(0, 0, 0);
+}
+
+/* main */
+#grid2 {
+  width: fit-content;
+  padding: 30px;
+  margin: 25px auto;
+  border-radius: 15px;
+  border: 2px solid lightblue;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
+}
+.grid-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgb(0, 0, 0);
+  background-color: lightblue;
+  color: #333;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#result {
+  margin: 50px auto;
+  width: fit-content;
+}
+#done {
+  margin-bottom: 20px;
+  color: lightblue;
+  text-align: center;
+  font-size: larger;
+  font-weight: 700;
+}
+.btn {
+  color: lightblue;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #222;
+  padding: 20px 30px;
+  width: fit-content;
+  border-radius: 5px;
+  box-shadow: 0px 4px 2px #111;
+  cursor: pointer;
+  transition-duration: 0.1s;
+}
+.btn:hover {
+  color: white;
+}
+.btn:active {
+  background-color: #222;
+  box-shadow: 0px 0px 2px #111;
+  transform: translateY(4px);
+}
+.hidden {
+  display: none;
+}
+
+/* footer */
+hr {
+  border-color: lightblue;
+  margin: 30px auto;
+}
+#navBars {
+  margin: 60px auto;
+  width: fit-content;
+}
+#navBars div {
+  display: inline;
+  margin: 0 30px;
+}
