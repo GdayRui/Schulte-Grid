@@ -6,7 +6,7 @@ const getRandomNum = (gridNum) => {
 
 // put the different random numbers into each grid cell
 const setDiffRandomNumToEachCell = (gridNum) => {
-  debugger;
+  // debugger;
   let elem = document.getElementById("grid" + gridNum);
   let elements = elem.getElementsByClassName("grid-item");
   let randomNumArr = [];
@@ -24,7 +24,7 @@ const setDiffRandomNumToEachCell = (gridNum) => {
 
 // click the button the show the grid correspondingly
 const showGrid = (gridNum) => {
-  debugger;
+  // debugger;
   let gridId = "grid" + gridNum;
   switch (gridId) {
     case "grid2":
@@ -103,12 +103,33 @@ const toggleShowOrHide = (isshown) => {
 
 // restart game
 const reset = () => {
-  setDiffRandomNumToEachCell(3);
-  const elem = document.getElementById("grid3");
-  let elems = elem.getElementsByClassName("grid-item");
-  for (let i = 0; i < elems.length; i++) {
-    elems[i].style.backgroundColor = "lightblue";
+  // debugger;
+  const resetGrids = (gridNum) => {
+    setDiffRandomNumToEachCell(gridNum);
+    let elem = document.getElementById("grid" + gridNum);
+    let elems = elem.getElementsByClassName("grid-item");
+    for (let i = 0; i < elems.length; i++) {
+      elems[i].style.backgroundColor = "lightblue";
+    }
+    index(false, true);
+    toggleShowOrHide(false);
+  };
+  let elems = document.getElementsByClassName("grid");
+  let currentGrid = [...elems].filter(
+    (e) => ![...e.classList].includes("hidden")
+  );
+  switch (currentGrid[0].id) {
+    case "grid2":
+      resetGrids(2);
+      break;
+    case "grid3":
+      resetGrids(3);
+      break;
+    case "grid4":
+      resetGrids(4);
+      break;
+    case "grid5":
+      resetGrids(5);
+      break;
   }
-  index(false, true);
-  toggleShowOrHide(false);
 };
