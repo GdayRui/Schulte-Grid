@@ -70,7 +70,7 @@ h1 {
   transform: translateY(4px);
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* footer */

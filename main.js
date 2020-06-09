@@ -5,21 +5,39 @@ const getRandomNum = (gridNum) => {
 };
 
 // put the different random numbers into each grid cell
-const setDiffRandomNumToEachCell = () => {
+const setDiffRandomNumToEachCell = (gridNum) => {
+  // debugger;
   let elements = document.getElementsByClassName("grid-item");
   let randomNumArr = [];
-  for (let i = 0; i < 4; i++) {
-    let randomNum = getRandomNum(4);
+  for (let i = 0; i < gridNum; i++) {
+    let randomNum = getRandomNum(gridNum);
     // if randomNum is in randomNumArr, reget randomNum until it is not in randomNumArr.
     while (randomNumArr.includes(randomNum)) {
-      randomNum = getRandomNum(4);
+      randomNum = getRandomNum(gridNum);
     }
     randomNumArr.push(randomNum);
 
     elements[i].innerHTML = randomNumArr[i];
   }
 };
-setDiffRandomNumToEachCell();
+
+// click the button the show the grid correspondingly
+const showGrid = (gridNum) => {
+  // debugger;
+  let gridId = "grid" + gridNum;
+  switch (gridId) {
+    case "grid2":
+      setDiffRandomNumToEachCell(4);
+      document.getElementById("grid2").classList.remove("hidden");
+      document.getElementById("grid3").classList.add("hidden");
+      break;
+    case "grid3":
+      setDiffRandomNumToEachCell(9);
+      document.getElementById("grid3").classList.remove("hidden");
+      document.getElementById("grid2").classList.add("hidden");
+      break;
+  }
+};
 
 // press each grid cell in numerical order
 // 1st press, check if it's 1,
