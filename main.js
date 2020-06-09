@@ -6,14 +6,15 @@ const getRandomNum = (gridNum) => {
 
 // put the different random numbers into each grid cell
 const setDiffRandomNumToEachCell = (gridNum) => {
-  // debugger;
-  let elements = document.getElementsByClassName("grid-item");
+  debugger;
+  let elem = document.getElementById("grid" + gridNum);
+  let elements = elem.getElementsByClassName("grid-item");
   let randomNumArr = [];
-  for (let i = 0; i < gridNum; i++) {
-    let randomNum = getRandomNum(gridNum);
+  for (let i = 0; i < gridNum * gridNum; i++) {
+    let randomNum = getRandomNum(gridNum * gridNum);
     // if randomNum is in randomNumArr, reget randomNum until it is not in randomNumArr.
     while (randomNumArr.includes(randomNum)) {
-      randomNum = getRandomNum(gridNum);
+      randomNum = getRandomNum(gridNum * gridNum);
     }
     randomNumArr.push(randomNum);
 
@@ -23,18 +24,36 @@ const setDiffRandomNumToEachCell = (gridNum) => {
 
 // click the button the show the grid correspondingly
 const showGrid = (gridNum) => {
-  // debugger;
+  debugger;
   let gridId = "grid" + gridNum;
   switch (gridId) {
     case "grid2":
-      setDiffRandomNumToEachCell(4);
+      setDiffRandomNumToEachCell(2);
       document.getElementById("grid2").classList.remove("hidden");
       document.getElementById("grid3").classList.add("hidden");
+      document.getElementById("grid4").classList.add("hidden");
+      document.getElementById("grid5").classList.add("hidden");
       break;
     case "grid3":
-      setDiffRandomNumToEachCell(9);
+      setDiffRandomNumToEachCell(3);
       document.getElementById("grid3").classList.remove("hidden");
       document.getElementById("grid2").classList.add("hidden");
+      document.getElementById("grid4").classList.add("hidden");
+      document.getElementById("grid5").classList.add("hidden");
+      break;
+    case "grid4":
+      setDiffRandomNumToEachCell(4);
+      document.getElementById("grid4").classList.remove("hidden");
+      document.getElementById("grid2").classList.add("hidden");
+      document.getElementById("grid3").classList.add("hidden");
+      document.getElementById("grid5").classList.add("hidden");
+      break;
+    case "grid5":
+      setDiffRandomNumToEachCell(5);
+      document.getElementById("grid5").classList.remove("hidden");
+      document.getElementById("grid2").classList.add("hidden");
+      document.getElementById("grid3").classList.add("hidden");
+      document.getElementById("grid4").classList.add("hidden");
       break;
   }
 };
