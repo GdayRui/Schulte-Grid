@@ -65,7 +65,7 @@ const showGrid = (gridNum) => {
 // if TRUE,  ,cell changes to gray
 // if FALSE,  ,cell changes back to lightblue
 // let i = 1;
-const clickCell = (elem) => {
+const clickCell = (elem, gridNum) => {
   let cellNum = parseInt(elem.innerText);
 
   if (cellNum === index(false, false)) {
@@ -73,7 +73,7 @@ const clickCell = (elem) => {
     index(true, false);
     elem.style.backgroundColor = "#fff";
   }
-  if (index(false, false) === 5) {
+  if (index(false, false) === gridNum * gridNum + 1) {
     toggleShowOrHide(true);
   }
 };
@@ -103,10 +103,11 @@ const toggleShowOrHide = (isshown) => {
 
 // restart game
 const reset = () => {
-  setDiffRandomNumToEachCell();
-  const elem = document.getElementsByClassName("grid-item");
-  for (let i = 0; i < elem.length; i++) {
-    elem[i].style.backgroundColor = "lightblue";
+  setDiffRandomNumToEachCell(3);
+  const elem = document.getElementById("grid3");
+  let elems = elem.getElementsByClassName("grid-item");
+  for (let i = 0; i < elems.length; i++) {
+    elems[i].style.backgroundColor = "lightblue";
   }
   index(false, true);
   toggleShowOrHide(false);
