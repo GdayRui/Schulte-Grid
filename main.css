@@ -14,15 +14,26 @@ h1 {
 }
 
 /* main */
-#grid2 {
+.grid {
   width: fit-content;
   padding: 30px;
   margin: 25px auto;
   border-radius: 15px;
   border: 2px solid lightblue;
   display: grid;
-  grid-template-columns: auto auto;
   grid-gap: 20px;
+}
+#grid2 {
+  grid-template-columns: auto auto;
+}
+#grid3 {
+  grid-template-columns: auto auto auto;
+}
+#grid4 {
+  grid-template-columns: auto auto auto auto;
+}
+#grid5 {
+  grid-template-columns: auto auto auto auto auto;
 }
 .grid-item {
   width: 100px;
