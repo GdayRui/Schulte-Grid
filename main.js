@@ -81,10 +81,11 @@ const showGrid = (gridNum) => {
 const clickCell = (elem, gridNum) => {
   let cellNum = parseInt(elem.innerText);
 
-  if (cellNum === index(false, false)) {
+  if (index(false, false) === cellNum) {
     //i++;
     index(true, false);
     elem.style.backgroundColor = "#fff";
+    toggleShowOrHideGridBtn(false);
   }
   if (index(false, false) === gridNum * gridNum + 1) {
     toggleShowOrHide(true);
@@ -103,7 +104,16 @@ const index = (() => {
     return i;
   };
 })();
+
 // toggle remove class 'hidden'
+const toggleShowOrHideGridBtn = (isShown) => {
+  const gridBtns = document.querySelectorAll("#navBars > .btn");
+  if (isShown) {
+    gridBtns.forEach((item) => item.classList.remove("hidden"));
+  } else {
+    gridBtns.forEach((item) => item.classList.add("hidden"));
+  }
+};
 const toggleShowOrHide = (isshown) => {
   if (isshown) {
     document.getElementById("done").classList.remove("hidden");
@@ -116,18 +126,6 @@ const toggleShowOrHide = (isshown) => {
 
 // restart game
 const reset = () => {
-  debugger;
-  resetGrids(gridNum);
-  // const resetGrids = (gridNum) => {
-  //   setDiffRandomNumToEachCell(gridNum);
-  //   let elem = document.getElementById("grid" + gridNum);
-  //   let elems = elem.getElementsByClassName("grid-item");
-  //   for (let i = 0; i < elems.length; i++) {
-  //     elems[i].style.backgroundColor = "lightblue";
-  //   }
-  //   index(false, true);
-  //   toggleShowOrHide(false);
-  // };
   let elems = document.getElementsByClassName("grid");
   // in html collection, elems is an object
   let currentGrid = [...elems].filter(
@@ -149,6 +147,7 @@ const reset = () => {
     default:
       break;
   }
+  toggleShowOrHideGridBtn(true);
 };
 
 // Bugs to be fixed -- 10/06
