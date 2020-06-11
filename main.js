@@ -69,6 +69,7 @@ const showGrid = (gridNum) => {
     default:
       break;
   }
+  toggleShowOrHideGridBtn(false);
 };
 
 // press each grid cell in numerical order
