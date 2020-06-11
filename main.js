@@ -22,38 +22,51 @@ const setDiffRandomNumToEachCell = (gridNum) => {
   }
 };
 
+const resetGrids = (gridNum) => {
+  setDiffRandomNumToEachCell(gridNum);
+  let elem = document.getElementById("grid" + gridNum);
+  let elems = elem.getElementsByClassName("grid-item");
+  for (let i = 0; i < elems.length; i++) {
+    elems[i].style.backgroundColor = "lightblue";
+  }
+  index(false, true);
+  toggleShowOrHide(false);
+};
+
 // click the button the show the grid correspondingly
 const showGrid = (gridNum) => {
   // debugger;
   let gridId = "grid" + gridNum;
   switch (gridId) {
     case "grid2":
-      setDiffRandomNumToEachCell(2);
+      resetGrids(2);
       document.getElementById("grid2").classList.remove("hidden");
       document.getElementById("grid3").classList.add("hidden");
       document.getElementById("grid4").classList.add("hidden");
       document.getElementById("grid5").classList.add("hidden");
       break;
     case "grid3":
-      setDiffRandomNumToEachCell(3);
+      resetGrids(3);
       document.getElementById("grid3").classList.remove("hidden");
       document.getElementById("grid2").classList.add("hidden");
       document.getElementById("grid4").classList.add("hidden");
       document.getElementById("grid5").classList.add("hidden");
       break;
     case "grid4":
-      setDiffRandomNumToEachCell(4);
+      resetGrids(4);
       document.getElementById("grid4").classList.remove("hidden");
       document.getElementById("grid2").classList.add("hidden");
       document.getElementById("grid3").classList.add("hidden");
       document.getElementById("grid5").classList.add("hidden");
       break;
     case "grid5":
-      setDiffRandomNumToEachCell(5);
+      resetGrids(5);
       document.getElementById("grid5").classList.remove("hidden");
       document.getElementById("grid2").classList.add("hidden");
       document.getElementById("grid3").classList.add("hidden");
       document.getElementById("grid4").classList.add("hidden");
+      break;
+    default:
       break;
   }
 };
@@ -103,18 +116,20 @@ const toggleShowOrHide = (isshown) => {
 
 // restart game
 const reset = () => {
-  // debugger;
-  const resetGrids = (gridNum) => {
-    setDiffRandomNumToEachCell(gridNum);
-    let elem = document.getElementById("grid" + gridNum);
-    let elems = elem.getElementsByClassName("grid-item");
-    for (let i = 0; i < elems.length; i++) {
-      elems[i].style.backgroundColor = "lightblue";
-    }
-    index(false, true);
-    toggleShowOrHide(false);
-  };
+  debugger;
+  resetGrids(gridNum);
+  // const resetGrids = (gridNum) => {
+  //   setDiffRandomNumToEachCell(gridNum);
+  //   let elem = document.getElementById("grid" + gridNum);
+  //   let elems = elem.getElementsByClassName("grid-item");
+  //   for (let i = 0; i < elems.length; i++) {
+  //     elems[i].style.backgroundColor = "lightblue";
+  //   }
+  //   index(false, true);
+  //   toggleShowOrHide(false);
+  // };
   let elems = document.getElementsByClassName("grid");
+  // in html collection, elems is an object
   let currentGrid = [...elems].filter(
     (e) => ![...e.classList].includes("hidden")
   );
@@ -131,8 +146,14 @@ const reset = () => {
     case "grid5":
       resetGrids(5);
       break;
+    default:
+      break;
   }
 };
 
-// To do:
-// fix display
+// Bugs to be fixed -- 10/06
+// eg: Press the 2x2 button to start, then press the first cell with number 1 in it, I call it cell one.
+// if press the 2x2 button again, all the 4 numbers will be reset in each cell inclucing the cell one which is already pressed,
+// which means at this time there would be another number in cell one instead of 1.
+// but the cell one's background color is still white indicating a pressed state.
+// The correct display is that all the cells' background colors should be blue whenever the reset button is clicked.
