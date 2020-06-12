@@ -33,7 +33,7 @@ const resetGrids = (gridNum) => {
   toggleShowOrHide(false);
 };
 
-// click the button the show the correspond grid
+// click the button to show the correspond grid
 const showGrid = (gridNum) => {
   // debugger;
   let gridId = "grid" + gridNum;
@@ -73,11 +73,10 @@ const showGrid = (gridNum) => {
   toggleShowOrHideGridBtn(false);
 
   // show the stopwatch
-  document.getElementById("stopwatch").innerHTML = `${get2digits(
-    minutes
-  )} : ${get2digits(seconds)}`;
+  stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
 };
 
+// change 1 digit to 2 digits
 let minutes = 0;
 let seconds = 0;
 const get2digits = (num) => {
@@ -88,40 +87,40 @@ const get2digits = (num) => {
   return num;
 };
 
+// toggle stopwatch
+let myVar;
+let stopwatchElem = document.getElementById("stopwatch");
+const stopwatch = (cellNum, gridNum) => {
+  const timeRun = () => {
+    if (seconds < 60) {
+      seconds = seconds + 1;
+    }
+    if (seconds === 60) {
+      minutes = minutes + 1;
+      seconds = 0;
+    }
+    stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
+  };
+  if (cellNum === 1) {
+    myVar = setInterval(timeRun, 1000);
+  }
+  if (cellNum === gridNum * gridNum) {
+    clearInterval(myVar);
+  }
+};
+
 // press each grid cell in numerical order
-// 1st press, check if it's 1,
-// 2nd press, check if it's 1+1,
-// ...
-// if TRUE,  ,cell changes to gray
-// if FALSE,  ,cell changes back to lightblue
 // let i = 1;
 const clickCell = (elem, gridNum) => {
   let cellNum = parseInt(elem.innerText);
-
+  stopwatch(cellNum, gridNum);
   if (index(false, false) === cellNum) {
-    //i++;
     index(true, false);
     elem.style.backgroundColor = "#fff";
     toggleShowOrHideGridBtn(false);
-    // stopwatch starts to run
-    const timeRun = () => {
-      if (seconds < 60) {
-        seconds = seconds + 1;
-      }
-      if (seconds === 60) {
-        minutes = minutes + 1;
-        seconds = 0;
-      }
-      let stopwatchValue = (document.getElementById(
-        "stopwatch"
-      ).innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`);
-      return stopwatchValue;
-    };
-    setInterval(timeRun, 1000);
   }
   if (index(false, false) === gridNum * gridNum + 1) {
     toggleShowOrHide(true);
-    // stopwatch stops
   }
 };
 
@@ -183,6 +182,9 @@ const reset = () => {
       break;
   }
   toggleShowOrHideGridBtn(false);
+  seconds = 0;
+  minutes = 0;
+  stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
 };
 
 // Stopwatch
@@ -190,3 +192,4 @@ const reset = () => {
 // 2. Press the FIRST number of the grid to start (clickCell()), time runs
 // 3. Press the LAST number of the grid to finish (clickCell()), time stops
 // 4. Store the time in 'previours result' div
+// 5. Restart, stopwatch is reset
