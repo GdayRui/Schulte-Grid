@@ -33,7 +33,7 @@ const resetGrids = (gridNum) => {
   toggleShowOrHide(false);
 };
 
-// click the button the show the grid correspondingly
+// click the button the show the correspond grid
 const showGrid = (gridNum) => {
   // debugger;
   let gridId = "grid" + gridNum;
@@ -69,7 +69,22 @@ const showGrid = (gridNum) => {
     default:
       break;
   }
+  // hide the grid button
   toggleShowOrHideGridBtn(false);
+
+  // show the stopwatch
+  let minutes = 0;
+  let seconds = 0;
+  const get2digits = (num) => {
+    num = Math.floor(num);
+    if (num < 10) {
+      return "0" + num;
+    }
+    return num;
+  };
+  document.getElementById("stopwatch").innerHTML = `${get2digits(
+    minutes
+  )} : ${get2digits(seconds)}`;
 };
 
 // press each grid cell in numerical order
@@ -92,7 +107,8 @@ const clickCell = (elem, gridNum) => {
     toggleShowOrHide(true);
   }
 };
-// set the i in block (closure)
+
+// ** set the i in block (closure)
 const index = (() => {
   let i = 1;
   return (isIncrease, isReset) => {
@@ -115,6 +131,7 @@ const toggleShowOrHideGridBtn = (isShown) => {
     gridBtns.forEach((item) => item.classList.add("hidden"));
   }
 };
+
 const toggleShowOrHide = (isshown) => {
   if (isshown) {
     document.getElementById("done").classList.remove("hidden");
@@ -151,9 +168,9 @@ const reset = () => {
   toggleShowOrHideGridBtn(true);
 };
 
-// Bugs to be fixed -- 10/06
-// eg: Press the 2x2 button to start, then press the first cell with number 1 in it, I call it cell one.
-// if press the 2x2 button again, all the 4 numbers will be reset in each cell inclucing the cell one which is already pressed,
-// which means at this time there would be another number in cell one instead of 1.
-// but the cell one's background color is still white indicating a pressed state.
-// The correct display is that all the cells' background colors should be blue whenever the reset button is clicked.
+// Stopwatch
+// 1. Press gridBtn (showGrid()), stopwatch is shown
+// 1.1 put the watch text into the 'stopwatch' div
+// 2. Start game (clickCell()), time runs
+// 3. Press last number of the grid to finish game (clickCell()), time stops
+// 4. Store the time in 'previours result' div

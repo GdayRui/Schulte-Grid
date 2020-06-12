@@ -54,12 +54,12 @@ h1 {
   margin: 50px auto;
   width: fit-content;
 }
-#done {
+#done,
+#stopwatch {
   margin-bottom: 20px;
   color: lightblue;
   text-align: center;
-  font-size: larger;
-  font-weight: 700;
+  font-size: 32px;
 }
 .btn {
   color: lightblue;
