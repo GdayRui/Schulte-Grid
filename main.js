@@ -73,18 +73,19 @@ const showGrid = (gridNum) => {
   toggleShowOrHideGridBtn(false);
 
   // show the stopwatch
-  let minutes = 0;
-  let seconds = 0;
-  const get2digits = (num) => {
-    num = Math.floor(num);
-    if (num < 10) {
-      return "0" + num;
-    }
-    return num;
-  };
   document.getElementById("stopwatch").innerHTML = `${get2digits(
     minutes
   )} : ${get2digits(seconds)}`;
+};
+
+let minutes = 0;
+let seconds = 0;
+const get2digits = (num) => {
+  num = Math.floor(num);
+  if (num < 10) {
+    return "0" + num;
+  }
+  return num;
 };
 
 // press each grid cell in numerical order
@@ -102,9 +103,25 @@ const clickCell = (elem, gridNum) => {
     index(true, false);
     elem.style.backgroundColor = "#fff";
     toggleShowOrHideGridBtn(false);
+    // stopwatch starts to run
+    const timeRun = () => {
+      if (seconds < 60) {
+        seconds = seconds + 1;
+      }
+      if (seconds === 60) {
+        minutes = minutes + 1;
+        seconds = 0;
+      }
+      let stopwatchValue = (document.getElementById(
+        "stopwatch"
+      ).innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`);
+      return stopwatchValue;
+    };
+    setInterval(timeRun, 1000);
   }
   if (index(false, false) === gridNum * gridNum + 1) {
     toggleShowOrHide(true);
+    // stopwatch stops
   }
 };
 
@@ -165,12 +182,11 @@ const reset = () => {
     default:
       break;
   }
-  toggleShowOrHideGridBtn(true);
+  toggleShowOrHideGridBtn(false);
 };
 
 // Stopwatch
 // 1. Press gridBtn (showGrid()), stopwatch is shown
-// 1.1 put the watch text into the 'stopwatch' div
-// 2. Start game (clickCell()), time runs
-// 3. Press last number of the grid to finish game (clickCell()), time stops
+// 2. Press the FIRST number of the grid to start (clickCell()), time runs
+// 3. Press the LAST number of the grid to finish (clickCell()), time stops
 // 4. Store the time in 'previours result' div
