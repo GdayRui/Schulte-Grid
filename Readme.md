@@ -7,10 +7,20 @@ which means at this time there would be another number in cell one instead of 1.
 However the cell one's background color is still white indicating a pressed state.  
 The correct display is that all the cells' background colors should be blue whenever the reset button is clicked.
 
-#### done --------------------------------
+#### done
 
 ## Introduce stopwatch -- 12/06
 
-#### done --------------------------------
+#### done
 
 ## layout -- 13/06
+
+#### done
+
+## stopwatch -- 14/06
+
+#### done
+
+## next button -- 15/06
+
+#### next button & back button

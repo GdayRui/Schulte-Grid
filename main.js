@@ -36,6 +36,13 @@ const resetGrids = (gridNum) => {
 // click the button to show the correspond grid
 const showGrid = (gridNum) => {
   // debugger;
+
+  // show 'back to home' button
+  document.getElementById("back").classList.remove("hidden");
+
+  //show 'stopwatch'
+  document.getElementById("stopwatch").classList.remove("hidden");
+
   let gridId = "grid" + gridNum;
   switch (gridId) {
     case "grid2":
@@ -76,7 +83,7 @@ const showGrid = (gridNum) => {
   stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
 };
 
-// change 1 digit to 2 digits
+// stopwatch: change 1 digit to 2 digits
 let minutes = 0;
 let seconds = 0;
 const get2digits = (num) => {
@@ -124,7 +131,7 @@ const clickCell = (elem, gridNum) => {
   }
 };
 
-// ** set the i in block (closure)
+// ** set the gloable var i in block (closure)
 const index = (() => {
   let i = 1;
   return (isIncrease, isReset) => {
@@ -147,6 +154,7 @@ const toggleShowOrHideGridBtn = (isShown) => {
     gridBtns.forEach((item) => item.classList.add("hidden"));
   }
 };
+// toggle 'result'
 const toggleShowOrHide = (isshown) => {
   if (isshown) {
     document.getElementById("done").classList.remove("hidden");
@@ -158,6 +166,7 @@ const toggleShowOrHide = (isshown) => {
     document.getElementById("next").classList.add("hidden");
   }
 };
+const toggleShowOrHideGrids = (isshown) => {};
 
 // reset stopwatch
 const resetStopwatch = () => {
@@ -217,6 +226,23 @@ const nextLevel = () => {
       break;
   }
   resetStopwatch();
+};
+
+// back to home
+const backToHome = () => {
+  // show gridBtn
+  toggleShowOrHideGridBtn(true);
+  // hide back to home btn
+  document.getElementById("back").classList.add("hidden");
+  // hide stopwatch
+  document.getElementById("stopwatch").classList.add("hidden");
+  // hide result
+  toggleShowOrHide(false);
+  // hide grids
+  document.getElementById("grid2").classList.add("hidden");
+  document.getElementById("grid3").classList.add("hidden");
+  document.getElementById("grid4").classList.add("hidden");
+  document.getElementById("grid5").classList.add("hidden");
 };
 
 // Stopwatch
