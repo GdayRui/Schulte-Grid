@@ -147,15 +147,23 @@ const toggleShowOrHideGridBtn = (isShown) => {
     gridBtns.forEach((item) => item.classList.add("hidden"));
   }
 };
-
 const toggleShowOrHide = (isshown) => {
   if (isshown) {
     document.getElementById("done").classList.remove("hidden");
     document.getElementById("restart").classList.remove("hidden");
+    document.getElementById("next").classList.remove("hidden");
   } else {
     document.getElementById("done").classList.add("hidden");
     document.getElementById("restart").classList.add("hidden");
+    document.getElementById("next").classList.add("hidden");
   }
+};
+
+// reset stopwatch
+const resetStopwatch = () => {
+  seconds = 0;
+  minutes = 0;
+  stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
 };
 
 // restart game
@@ -181,10 +189,34 @@ const reset = () => {
     default:
       break;
   }
-  toggleShowOrHideGridBtn(false);
-  seconds = 0;
-  minutes = 0;
-  stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
+  // toggleShowOrHideGridBtn(false);
+  resetStopwatch();
+};
+
+// next level
+const nextLevel = () => {
+  let elems = document.getElementsByClassName("grid");
+  // in html collection, elems is an object
+  let currentGrid = [...elems].filter(
+    (e) => ![...e.classList].includes("hidden")
+  );
+  switch (currentGrid[0].id) {
+    case "grid2":
+      resetGrids(2);
+      showGrid(3);
+      break;
+    case "grid3":
+      resetGrids(3);
+      showGrid(4);
+      break;
+    case "grid4":
+      resetGrids(4);
+      showGrid(5);
+      break;
+    default:
+      break;
+  }
+  resetStopwatch();
 };
 
 // Stopwatch
