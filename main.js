@@ -43,6 +43,9 @@ const showGrid = (gridNum) => {
   //show 'stopwatch'
   document.getElementById("stopwatch").classList.remove("hidden");
 
+  // reset stopwatch
+  resetStopwatch();
+
   let gridId = "grid" + gridNum;
   switch (gridId) {
     case "grid2":
