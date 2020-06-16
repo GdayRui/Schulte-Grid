@@ -22,6 +22,7 @@ const setDiffRandomNumToEachCell = (gridNum) => {
   }
 };
 
+// Comments: simplify this function
 const resetGrids = (gridNum) => {
   setDiffRandomNumToEachCell(gridNum);
   let elem = document.getElementById("grid" + gridNum);
@@ -86,6 +87,13 @@ const showGrid = (gridNum) => {
   stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
 };
 
+let global = {
+  minutes: 0,
+  seconds: 0,
+  intervalID: 0,
+  stopwatchElem: document.getElementById("stopwatch"),
+};
+
 // stopwatch: change 1 digit to 2 digits
 let minutes = 0;
 let seconds = 0;
@@ -98,7 +106,7 @@ const get2digits = (num) => {
 };
 
 // toggle stopwatch
-let myVar;
+let intervalID;
 let stopwatchElem = document.getElementById("stopwatch");
 const stopwatch = (cellNum, gridNum) => {
   const timeRun = () => {
@@ -112,10 +120,10 @@ const stopwatch = (cellNum, gridNum) => {
     stopwatchElem.innerHTML = `${get2digits(minutes)} : ${get2digits(seconds)}`;
   };
   if (cellNum === 1) {
-    myVar = setInterval(timeRun, 1000);
+    intervalID = setInterval(timeRun, 1000);
   }
   if (cellNum === gridNum * gridNum) {
-    clearInterval(myVar);
+    clearInterval(intervalID);
   }
 };
 
@@ -157,7 +165,7 @@ const toggleShowOrHideGridBtn = (isShown) => {
     gridBtns.forEach((item) => item.classList.add("hidden"));
   }
 };
-// toggle 'result'
+// toggle 'div#result'
 const toggleShowOrHide = (isshown) => {
   if (isshown) {
     document.getElementById("done").classList.remove("hidden");
