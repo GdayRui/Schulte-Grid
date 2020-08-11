@@ -11,8 +11,8 @@ However the cell one's background color is still white indicating a pressed stat
 The correct display is that all the cells' background colors should be blue whenever the reset button is clicked.
 
 ## Tasks done
-Stopwatch -- finished on 12/06
-layout -- finished on 13/06
-stopwatch -- finished on 14/06
-next button -- finished on 15/06
-next button & back button -- finished
+  - Stopwatch -- finished on 12/06
+  - layout -- finished on 13/06
+  - stopwatch -- finished on 14/06
+  - next button -- finished on 15/06
+  - next button & back button -- finished
