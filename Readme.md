@@ -1,5 +1,5 @@
 ## Introduction
-A web browser-based game developed using vanilla JavaScript, to train my daughter’s level of concentration, as suggested by the school teacher. 
+A web browser-based game developed using vanilla JavaScript, to train my daughter’s level of concentration, as suggested by her teacher. 
 
 ## Bugs fixed
 
